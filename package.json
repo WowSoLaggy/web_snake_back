@@ -1,0 +1,25 @@
+{
+  "name": "web_snake_back",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "description": "A backend for web-snake application that is responsible for interacting with high score database",
+  "keywords": [
+    "backend",
+    "node",
+    "js",
+    "ydb"
+  ],
+  "author": "WowSoLaggy wowsolaggy@gmail.com",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/WowSoLaggy/web_snake_back.git"
+  },
+  "scripts": {
+    "test": "node src/test.js"
+  },
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "ydb_api": "github:WowSoLaggy/ydb_api#v1.0.0"
+  }
+}
