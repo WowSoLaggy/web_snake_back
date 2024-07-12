@@ -44,13 +44,13 @@ async function submit_score(name, score) {
 }
 
 
-async function on_request(body) {
-  http_method = body.httpMethod;
+async function on_request(event) {
+  http_method = event.httpMethod;
 
   if (http_method === 'GET') {
     return await get_high_score();
   } else if (http_method === 'POST') {
-    const data = JSON.parse(body.body);
+    const data = JSON.parse(event.body);
     return await submit_score(data.name, data.score);
   }
 }
