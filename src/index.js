@@ -8,7 +8,9 @@ const ydb_endpoint = process.env.YDB_ENDPOINT;
 const ydb_database_path = process.env.YDB_DATABASE_PATH;
 const ydb_table_name = process.env.YDB_TABLE_NAME;
 
+console.log('before_init');
 const ydb = new ydb_api(ydb_endpoint, ydb_database_path);
+console.log('after_init');
 
 
 async function get_max_id() {
@@ -20,8 +22,10 @@ async function get_max_id() {
 
 
 async function get_high_score() {
+  console.log('get_high_score');
   const query = `SELECT name, score, date FROM \`${ydb_table_name}\` ORDER BY score DESC LIMIT 10`;
   const response = await ydb.query(query);
+  console.log(response);
 
   return response;
 }
