@@ -8,9 +8,7 @@ const ydb_endpoint = process.env.YDB_ENDPOINT;
 const ydb_database_path = process.env.YDB_DATABASE_PATH;
 const ydb_table_name = process.env.YDB_TABLE_NAME;
 
-console.log('before_init');
 const ydb = new ydb_api(ydb_endpoint, ydb_database_path);
-console.log('after_init');
 
 
 async function get_max_id() {
@@ -40,4 +38,16 @@ async function submit_score(name, score) {
 }
 
 
-module.exports = { get_high_score, submit_score };
+async function on_request(body) {
+  http_method = body.httpMethod;
+
+  if (http_method === 'GET') {
+    return await get_high_score();
+  } else if (http_method === 'POST') {
+    const data = JSON.parse(body.body);
+    return await submit_score(data.name, data.score);
+  }
+}
+
+
+module.exports = { on_request };
