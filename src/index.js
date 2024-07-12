@@ -25,7 +25,10 @@ async function get_high_score() {
   const response = await ydb.query(query);
   console.log(response);
 
-  return response;
+  return {
+    statusCode: 200,
+    body: JSON.stringify(response),
+  };
 }
 
 async function submit_score(name, score) {
@@ -34,7 +37,10 @@ async function submit_score(name, score) {
   const query = `INSERT INTO \`${ydb_table_name}\` (id, name, score, date) VALUES (${next_id}, '${name}', ${score}, CurrentUtcDate())`;
   await ydb.query(query);
 
-  return 'OK';
+  return {
+    statusCode: 200,
+    body: 'OK',
+  };
 }
 
 
